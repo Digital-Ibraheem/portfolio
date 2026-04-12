@@ -39,6 +39,7 @@ const experiences = [
     current: false,
     logo: solinkLogo,
     fillLogo: true,
+    fillPad: true,
     logoClass: 'w-10 h-10'
   },
   {
@@ -110,7 +111,7 @@ export const Experience: React.FC = () => {
                     <img
                       src={exp.logo}
                       alt={exp.company}
-                      className={exp.fillLogo ? 'w-full h-full object-cover' : `${exp.logoClass} object-contain`}
+                      className={exp.fillLogo ? `object-cover ${exp.fillPad ? 'w-4/5 h-4/5' : 'w-full h-full'}` : `${exp.logoClass} object-contain`}
                       referrerPolicy="no-referrer"
                     />
                   </div>

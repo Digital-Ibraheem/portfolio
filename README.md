@@ -1,20 +1,32 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# ibraheem dawod — portfolio
 
-# Run and deploy your AI Studio app
+Personal portfolio built with React, TypeScript, and Tailwind CSS.
 
-This contains everything you need to run your app locally.
+## design
 
-View your app in AI Studio: https://ai.studio/apps/f232e14e-deae-4af0-9151-c88d4ed1bb96
+The aesthetic is inspired by deep space observation — a dark, minimal canvas where content surfaces through light rather than structure. No heavy borders, no card grids. Just text, motion, and a starfield that reacts to your cursor.
 
-## Run Locally
+The star effect is the centrepiece: 600 particles sit at fixed positions across the viewport, each with its own slow orbital drift and twinkle. Move your cursor and the stars near it grow brighter, bigger, and more agitated — a disturbance rippling outward. Move away and they settle back. The goal was something that felt alive without demanding attention.
 
-**Prerequisites:**  Node.js
+Typography pairs **Space Grotesk** (headlines, labels) with **Newsreader** (body, italic) — a tension between the technical and the literary that mirrors the work itself.
 
+## what it shows
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- **Archive** — selected projects spanning AI/ML tooling, full-stack apps, and open-source work
+- **Experience** — timeline of internships and roles, from founding a dev agency to incoming at Tesla
+
+## stack
+
+- React 19 + TypeScript
+- Vite
+- Tailwind CSS v4
+- Framer Motion (`motion/react`)
+- React Router v6
+- Canvas API (starfield)
+
+## running locally
+
+```bash
+npm install
+npm run dev
+```
