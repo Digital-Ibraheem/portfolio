@@ -38,8 +38,7 @@ const experiences = [
     period: 'sep. – dec. 2025',
     current: false,
     logo: solinkLogo,
-    fillLogo: true,
-    fillPad: true,
+    fillLogo: false,
     logoClass: 'w-10 h-10'
   },
   {
