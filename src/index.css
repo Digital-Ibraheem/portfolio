@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Newsreader:ital,wght@0,200;0,300;1,200;1,300&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-headline: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Newsreader", ui-serif, Georgia, serif;
+  --font-label: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: #131313;
+  --color-primary: #ffffff;
+  --color-secondary: #c6c6c7;
+  --color-outline: #474747;
+  --color-surface: #131313;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-surface-container-low: #1b1b1b;
+  --color-surface-container-high: #2a2a2a;
+  --color-on-surface-variant: #c6c6c6;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-primary font-body lowercase selection:bg-primary selection:text-background overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  .particle-field {
+    background-image: radial-gradient(#c6c6c6 0.5px, transparent 0.5px);
+    background-size: 80px 80px;
+  }
+}
