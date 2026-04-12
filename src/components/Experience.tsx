@@ -115,9 +115,12 @@ export const Experience: React.FC = () => {
                   </div>
                 )}
 
-                <h2 className={`text-3xl font-headline font-bold tracking-tight mb-2 ${exp.current ? 'text-white' : 'text-white/80'}`}>
-                  {exp.company} / {exp.role}
+                <h2 className={`font-headline text-[3.5rem] font-bold tracking-[-0.04em] leading-none mb-1 ${exp.current ? 'text-white' : 'text-white/80'}`}>
+                  {exp.company}
                 </h2>
+                <p className={`font-headline text-lg font-normal tracking-tight mb-3 ${exp.current ? 'text-white/60' : 'text-white/40'}`}>
+                  {exp.role}
+                </p>
                 <p className="text-secondary font-body italic text-lg max-w-md leading-relaxed">
                   {exp.description}
                 </p>

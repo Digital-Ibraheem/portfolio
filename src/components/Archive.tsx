@@ -9,7 +9,7 @@ import movieImg from '../assets/projects/movierecommender.png';
 const projects = [
   {
     id: 'tafsir_search',
-    title: 'tafsir_search',
+    title: 'tafsir search',
     description: 'bilingual quran rag engine with a two-stage llm pipeline. 80% fewer hallucinated citations.',
     image: tafsirImg,
     source: 'https://github.com/Digital-Ibraheem/tafsir-search',
@@ -17,7 +17,7 @@ const projects = [
   },
   {
     id: 'modcentral',
-    title: 'modcentral',
+    title: 'mod central',
     description: 'multi-vendor car parts marketplace. elasticsearch search, role-based access, ci/cd — supporting 10k+ listings.',
     image: modcentralImg,
     source: null,
@@ -25,7 +25,7 @@ const projects = [
   },
   {
     id: 'agent_budget_guard',
-    title: 'agent_budget_guard',
+    title: 'agent budget guard',
     description: 'open-source sdk for hard dollar caps on llm agents. supports openai, anthropic, and gemini. 300+ downloads in the first week.',
     image: agentImg,
     source: 'https://github.com/Digital-Ibraheem/agent-budget-guard',
@@ -33,7 +33,7 @@ const projects = [
   },
   {
     id: 'movie_recommender',
-    title: 'movie_recommender',
+    title: 'movie recommender',
     description: 'collaborative filtering recommendation engine built with flask and scikit-learn.',
     image: movieImg,
     source: 'https://github.com/Digital-Ibraheem/movie-recommender-backend',
@@ -41,7 +41,7 @@ const projects = [
   },
   {
     id: '7_degrees',
-    title: '7_degrees',
+    title: '7 degrees',
     description: 'real-time transcription pipeline using openai whisper + gemini. next.js dashboard with insights loading under 2s. shipped in 36 hours.',
     image: sevenDegreesImg,
     source: 'https://github.com/adamstol/HTN-2025',
@@ -49,7 +49,7 @@ const projects = [
   },
   {
     id: 'chess_evaluation',
-    title: 'chess_evaluation',
+    title: 'chess evaluation',
     description: 'python chess position evaluator using custom heuristics and material analysis.',
     image: 'https://opengraph.githubassets.com/1/Digital-Ibraheem/chess-evaluation',
     source: 'https://github.com/Digital-Ibraheem/chess-evaluation',
@@ -68,7 +68,7 @@ export const Archive: React.FC = () => {
                 initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="font-headline text-[3.5rem] font-bold tracking-[-0.04em] leading-none mb-4"
+                className="font-headline text-[3.5rem] font-bold tracking-[-0.04em] leading-tight mb-4"
               >
                 {project.title}
               </motion.h2>
