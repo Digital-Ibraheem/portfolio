@@ -81,6 +81,17 @@ export const Archive: React.FC = () => {
               >
                 {project.description}
               </motion.p>
+              {index === projects.length - 1 && (
+                <a
+                  href="https://github.com/Digital-Ibraheem"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`mt-10 text-[10px] font-headline font-bold lowercase tracking-widest text-secondary hover:text-white transition-colors duration-300 ${index % 2 !== 0 ? 'text-right' : ''}`}
+                >
+                  view all on github →
+                </a>
+              )}
+
               <div className={`flex gap-4 mt-8 ${index % 2 !== 0 ? 'justify-end' : ''}`}>
                 {project.source && (
                   <a
@@ -89,7 +100,7 @@ export const Archive: React.FC = () => {
                     rel="noopener noreferrer"
                     className="px-8 py-3 rounded-full border border-outline/30 text-[10px] font-headline font-bold lowercase tracking-widest hover:bg-white hover:text-background transition-all duration-300"
                   >
-                    view_source
+                    view source
                   </a>
                 )}
                 {project.demo && (
@@ -99,7 +110,7 @@ export const Archive: React.FC = () => {
                     rel="noopener noreferrer"
                     className="px-8 py-3 rounded-full border border-outline/30 text-[10px] font-headline font-bold lowercase tracking-widest hover:bg-white hover:text-background transition-all duration-300"
                   >
-                    live_demo
+                    live demo
                   </a>
                 )}
               </div>
@@ -131,18 +142,6 @@ export const Archive: React.FC = () => {
           </div>
         </section>
       ))}
-
-      <section className="snap-start snap-always h-screen flex flex-col items-center justify-center gap-8">
-        <p className="font-body italic text-secondary text-lg tracking-wide">there's more where that came from.</p>
-        <a
-          href="https://github.com/Digital-Ibraheem"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-10 py-3 rounded-full border border-outline/30 text-[10px] font-headline font-bold lowercase tracking-widest hover:bg-white hover:text-background transition-all duration-300"
-        >
-          view all on github
-        </a>
-      </section>
     </main>
   );
 };

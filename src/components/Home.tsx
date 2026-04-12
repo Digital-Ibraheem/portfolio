@@ -26,13 +26,13 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             onClick={() => onNavigate('archive')}
             className="px-8 py-2 bg-transparent text-white border border-white/30 font-headline font-bold text-sm lowercase tracking-tight rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300 cursor-pointer"
           >
-            view_archive
+            view archive
           </button>
           <button 
             onClick={() => onNavigate('experience')}
             className="px-8 py-2 bg-transparent text-white border border-white/30 font-headline font-bold text-sm lowercase tracking-tight rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300 cursor-pointer"
           >
-            experience_log
+            experience log
           </button>
         </div>
       </motion.div>
