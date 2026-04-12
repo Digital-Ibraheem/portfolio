@@ -61,7 +61,7 @@ export const Archive: React.FC = () => {
   return (
     <main className="h-screen overflow-y-scroll snap-y snap-mandatory">
       {projects.map((project, index) => (
-        <section key={project.id} className="snap-start h-screen flex items-center px-12 relative overflow-hidden border-b border-outline/10 last:border-b-0">
+        <section key={project.id} className="snap-start snap-always h-screen flex items-center px-12 relative overflow-hidden border-b border-outline/10 last:border-b-0">
           <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
             <div className={`md:col-span-5 ${index % 2 !== 0 ? 'md:order-2 text-right' : ''}`}>
               <motion.h2

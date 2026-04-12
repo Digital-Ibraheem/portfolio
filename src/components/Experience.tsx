@@ -72,7 +72,7 @@ export const Experience: React.FC = () => {
       <div className="fixed left-1/2 top-0 bottom-0 -translate-x-1/2 w-[1px] bg-gradient-to-b from-transparent via-outline/30 to-transparent pointer-events-none hidden md:block z-10" />
 
       {experiences.map((exp, index) => (
-        <div key={exp.company} className="snap-start h-screen flex items-center relative">
+        <div key={exp.company} className="snap-start snap-always h-screen flex items-center relative">
           <div className="max-w-6xl mx-auto px-6 w-full">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
