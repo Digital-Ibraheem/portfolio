@@ -1,12 +1,17 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import tafsirImg from '../assets/projects/tafsirsearch.png';
+import agentImg from '../assets/projects/agentbudgetguard.png';
+import modcentralImg from '../assets/projects/modcentral.png';
+import sevenDegreesImg from '../assets/projects/7degrees.png';
+import movieImg from '../assets/projects/movierecommender.png';
 
 const projects = [
   {
     id: 'tafsir_search',
     title: 'tafsir_search',
     description: 'bilingual quran rag engine with a two-stage llm pipeline. 80% fewer hallucinated citations.',
-    image: 'https://opengraph.githubassets.com/1/Digital-Ibraheem/tafsir-search',
+    image: tafsirImg,
     source: 'https://github.com/Digital-Ibraheem/tafsir-search',
     demo: null
   },
@@ -14,7 +19,7 @@ const projects = [
     id: 'modcentral',
     title: 'modcentral',
     description: 'multi-vendor car parts marketplace. elasticsearch search, role-based access, ci/cd — supporting 10k+ listings.',
-    image: null,
+    image: modcentralImg,
     source: null,
     demo: 'https://modcentral.co'
   },
@@ -22,7 +27,7 @@ const projects = [
     id: 'agent_budget_guard',
     title: 'agent_budget_guard',
     description: 'open-source sdk for hard dollar caps on llm agents. supports openai, anthropic, and gemini. 300+ downloads in the first week.',
-    image: 'https://opengraph.githubassets.com/1/Digital-Ibraheem/agent-budget-guard',
+    image: agentImg,
     source: 'https://github.com/Digital-Ibraheem/agent-budget-guard',
     demo: 'https://pypi.org/project/agent-budget-guard/'
   },
@@ -30,7 +35,7 @@ const projects = [
     id: 'movie_recommender',
     title: 'movie_recommender',
     description: 'collaborative filtering recommendation engine built with flask and scikit-learn.',
-    image: 'https://opengraph.githubassets.com/1/Digital-Ibraheem/movie-recommender-backend',
+    image: movieImg,
     source: 'https://github.com/Digital-Ibraheem/movie-recommender-backend',
     demo: 'https://creative-madeleine-a22059.netlify.app/'
   },
@@ -38,7 +43,7 @@ const projects = [
     id: '7_degrees',
     title: '7_degrees',
     description: 'real-time transcription pipeline using openai whisper + gemini. next.js dashboard with insights loading under 2s. shipped in 36 hours.',
-    image: 'https://opengraph.githubassets.com/1/adamstol/HTN-2025',
+    image: sevenDegreesImg,
     source: 'https://github.com/adamstol/HTN-2025',
     demo: 'https://7-degrees.vercel.app/'
   },
@@ -54,9 +59,9 @@ const projects = [
 
 export const Archive: React.FC = () => {
   return (
-    <main className="pt-32 pb-20">
+    <main className="h-screen overflow-y-scroll snap-y snap-mandatory">
       {projects.map((project, index) => (
-        <section key={project.id} className="px-12 py-24 relative overflow-hidden border-b border-outline/10 last:border-b-0">
+        <section key={project.id} className="snap-start h-screen flex items-center px-12 relative overflow-hidden border-b border-outline/10 last:border-b-0">
           <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
             <div className={`md:col-span-5 ${index % 2 !== 0 ? 'md:order-2 text-right' : ''}`}>
               <motion.h2
@@ -105,13 +110,13 @@ export const Archive: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="bg-surface-container-low aspect-video w-full overflow-hidden relative group"
+                className="bg-surface-container-low aspect-video w-full overflow-hidden relative"
               >
                 {project.image ? (
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+                    className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
                   />
                 ) : (

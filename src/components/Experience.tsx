@@ -67,18 +67,14 @@ const experiences = [
 
 export const Experience: React.FC = () => {
   return (
-    <main className="relative z-10 pt-64 pb-96 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 relative">
-        {/* Central Timeline Axis */}
-        <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-[1px] bg-gradient-to-b from-transparent via-outline/30 to-transparent hidden md:block" />
-
-        <div className="space-y-24 relative">
-          {experiences.map((exp, index) => (
+    <main className="h-screen overflow-y-scroll snap-y snap-mandatory relative z-10">
+      {experiences.map((exp, index) => (
+        <div key={exp.company} className="snap-start h-screen flex items-center">
+          <div className="max-w-6xl mx-auto px-6 w-full">
             <motion.div
-              key={exp.company}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className={`flex flex-col md:flex-row items-center justify-center w-full group ${
                 index % 2 === 0 ? 'md:justify-start' : 'md:justify-end'
@@ -131,18 +127,11 @@ export const Experience: React.FC = () => {
                 </div>
               </div>
 
-              {/* Dot on timeline */}
-              <div className={`hidden md:flex absolute left-1/2 -translate-x-1/2 z-20 transition-transform group-hover:scale-125 ${
-                exp.current
-                  ? 'w-5 h-5 bg-white rounded-full border-4 border-background ring-2 ring-white/30'
-                  : 'w-4 h-4 bg-white rounded-full border-4 border-background'
-              }`} />
-
               <div className={`w-full md:w-1/2 hidden md:block ${index % 2 === 0 ? '' : 'order-1'}`} />
             </motion.div>
-          ))}
+          </div>
         </div>
-      </div>
+      ))}
     </main>
   );
 };
