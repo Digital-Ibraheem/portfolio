@@ -131,6 +131,18 @@ export const Archive: React.FC = () => {
           </div>
         </section>
       ))}
+
+      <section className="snap-start snap-always h-screen flex flex-col items-center justify-center gap-8">
+        <p className="font-body italic text-secondary text-lg tracking-wide">there's more where that came from.</p>
+        <a
+          href="https://github.com/Digital-Ibraheem"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-10 py-3 rounded-full border border-outline/30 text-[10px] font-headline font-bold lowercase tracking-widest hover:bg-white hover:text-background transition-all duration-300"
+        >
+          view all on github
+        </a>
+      </section>
     </main>
   );
 };
