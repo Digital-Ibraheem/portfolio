@@ -1,10 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
 
-// Renders title with a line break before each underscore: agent_budget_guard →
-// agent
-// _budget
-// _guard
 const renderTitle = (title: string) => {
   const parts = title.split('_');
   return parts.map((part, i) => (
@@ -13,6 +9,7 @@ const renderTitle = (title: string) => {
     </React.Fragment>
   ));
 };
+
 import tafsirImg from '../assets/projects/tafsirsearch.png';
 import agentImg from '../assets/projects/agentbudgetguard.png';
 import modcentralImg from '../assets/projects/modcentral.png';
@@ -72,16 +69,19 @@ const projects = [
 
 export const Archive: React.FC = () => {
   return (
-    <main className="h-screen overflow-y-scroll snap-y snap-mandatory">
+    <main className="h-screen overflow-y-scroll md:snap-y md:snap-mandatory">
       {projects.map((project, index) => (
-        <section key={project.id} className={`snap-start h-screen flex items-center px-12 relative overflow-hidden border-b border-outline/10 last:border-b-0 ${index === projects.length - 1 ? 'pb-20' : ''}`}>
-          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-            <div className={`md:col-span-5 ${index % 2 !== 0 ? 'md:order-2 text-right' : ''}`}>
+        <section
+          key={project.id}
+          className={`min-h-screen md:h-screen md:snap-start md:flex md:items-center px-6 sm:px-12 py-24 md:py-0 relative overflow-hidden border-b border-outline/10 last:border-b-0 ${index === projects.length - 1 ? 'pb-28 md:pb-20' : ''}`}
+        >
+          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-center">
+            <div className={`md:col-span-5 ${index % 2 !== 0 ? 'md:order-2 md:text-right' : ''}`}>
               <motion.h2
                 initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="font-headline text-[3.5rem] font-bold tracking-[-0.04em] leading-tight mb-4"
+                className="font-headline text-3xl sm:text-[3.5rem] font-bold tracking-[-0.04em] leading-tight mb-4"
               >
                 {renderTitle(project.title)}
               </motion.h2>
@@ -90,17 +90,17 @@ export const Archive: React.FC = () => {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="font-body text-lg font-extralight italic tracking-wider text-secondary"
+                className="font-body text-base sm:text-lg font-extralight italic tracking-wider text-secondary"
               >
                 {project.description}
               </motion.p>
-              <div className={`flex gap-4 mt-8 ${index % 2 !== 0 ? 'justify-end' : ''}`}>
+              <div className={`flex gap-4 mt-6 md:mt-8 ${index % 2 !== 0 ? 'md:justify-end' : ''}`}>
                 {project.source && (
                   <a
                     href={project.source}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-8 py-3 rounded-full border border-outline/30 text-[10px] font-headline font-bold lowercase tracking-widest hover:bg-white hover:text-background transition-all duration-300"
+                    className="px-6 sm:px-8 py-3 rounded-full border border-outline/30 text-xs sm:text-[10px] font-headline font-bold lowercase tracking-widest hover:bg-white hover:text-background transition-all duration-300"
                   >
                     view_source
                   </a>
@@ -110,7 +110,7 @@ export const Archive: React.FC = () => {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-8 py-3 rounded-full border border-outline/30 text-[10px] font-headline font-bold lowercase tracking-widest hover:bg-white hover:text-background transition-all duration-300"
+                    className="px-6 sm:px-8 py-3 rounded-full border border-outline/30 text-xs sm:text-[10px] font-headline font-bold lowercase tracking-widest hover:bg-white hover:text-background transition-all duration-300"
                   >
                     live_demo
                   </a>
@@ -144,7 +144,7 @@ export const Archive: React.FC = () => {
           </div>
 
           {index === projects.length - 1 && (
-            <div className="absolute bottom-10 left-0 right-0 flex flex-col items-center gap-4">
+            <div className="relative mt-10 md:mt-0 md:absolute md:bottom-10 left-0 right-0 flex flex-col items-center gap-4">
               <p className="font-body italic text-secondary text-sm tracking-wide">wanna see more?</p>
               <a
                 href="https://github.com/Digital-Ibraheem"

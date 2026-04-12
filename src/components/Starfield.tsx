@@ -30,12 +30,17 @@ export const Starfield: React.FC = () => {
     canvas.width = width;
     canvas.height = height;
 
+    const isMobile = width < 768;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const mouse = { x: -9999, y: -9999 };
+    const gyroTarget = { x: -9999, y: -9999 };
+    let gyroEnabled = false;
     let stars: Star[] = [];
     let animId: number;
 
-    const STAR_COUNT  = 600;
-    const INFLUENCE_R = 160;  // radius of cursor disturbance
+    const STAR_COUNT  = isMobile ? 150 : 600;
+    const INFLUENCE_R = 160;
     const SPRING      = 0.012;
     const DAMPING     = 0.88;
 
@@ -68,16 +73,30 @@ export const Starfield: React.FC = () => {
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
 
+      // Smooth gyro input toward target
+      if (gyroEnabled) {
+        mouse.x += (gyroTarget.x - mouse.x) * 0.08;
+        mouse.y += (gyroTarget.y - mouse.y) * 0.08;
+      }
+
+      ctx.fillStyle = '#ffffff';
+
       stars.forEach(star => {
-        // Distance from cursor
+        if (reducedMotion) {
+          // Static render — no drift, no twinkle
+          ctx.globalAlpha = star.baseOpacity * 0.5;
+          ctx.beginPath();
+          ctx.arc(star.homeX, star.homeY, star.size, 0, Math.PI * 2);
+          ctx.fill();
+          return;
+        }
+
         const dxCursor = star.x - mouse.x;
         const dyCursor = star.y - mouse.y;
         const distCursor = Math.sqrt(dxCursor * dxCursor + dyCursor * dyCursor);
 
-        // Excitement: 0 far away, 1 at cursor center (smooth falloff)
         const excitement = Math.max(0, 1 - distCursor / INFLUENCE_R);
 
-        // Ambient drift — speed and radius scale up with excitement
         star.driftAngle += star.driftSpeed * (1 + excitement * 6);
         star.twinklePhase += star.twinkleSpeed * (1 + excitement * 3);
 
@@ -85,7 +104,6 @@ export const Starfield: React.FC = () => {
         const driftX = star.homeX + Math.cos(star.driftAngle) * effectiveRadius;
         const driftY = star.homeY + Math.sin(star.driftAngle) * effectiveRadius;
 
-        // Spring toward drifting home — no cursor attraction
         const fx = (driftX - star.x) * SPRING;
         const fy = (driftY - star.y) * SPRING;
 
@@ -94,31 +112,70 @@ export const Starfield: React.FC = () => {
         star.x += star.vx;
         star.y += star.vy;
 
-        // Size: base + scale up near cursor
         const renderSize = star.size * (1 + excitement * 2.5);
 
-        // Opacity: ambient base + boost near cursor, twinkle always
         const twinkle = 0.4 + 0.6 * Math.sin(star.twinklePhase);
         const opacity = (0.30 + excitement * 0.65) * star.baseOpacity * twinkle;
 
+        ctx.globalAlpha = opacity;
         ctx.beginPath();
         ctx.arc(star.x, star.y, renderSize, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
         ctx.fill();
       });
 
+      ctx.globalAlpha = 1;
       animId = requestAnimationFrame(draw);
     };
 
+    // Desktop: mouse
     const handleMouseMove = (e: MouseEvent) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
+    };
+
+    // Mobile: device orientation (gyroscope)
+    const handleOrientation = (e: DeviceOrientationEvent) => {
+      if (e.gamma == null || e.beta == null) return;
+      // gamma: left-right tilt (-90 to 90), map ±45° to viewport width
+      const gClamped = Math.max(-45, Math.min(45, e.gamma));
+      gyroTarget.x = ((gClamped + 45) / 90) * width;
+      // beta: front-back tilt (0 to 180 when face-up), neutral ~45°, map ±45° around that
+      const bClamped = Math.max(0, Math.min(90, e.beta));
+      gyroTarget.y = (bClamped / 90) * height;
+    };
+
+    const enableGyro = () => {
+      gyroEnabled = true;
+      window.addEventListener('deviceorientation', handleOrientation);
+    };
+
+    // iOS 13+ requires permission for gyroscope
+    const requestGyroPermission = () => {
+      const DOE = DeviceOrientationEvent as any;
+      if (typeof DOE.requestPermission === 'function') {
+        DOE.requestPermission().then((state: string) => {
+          if (state === 'granted') enableGyro();
+        }).catch(() => {});
+      } else {
+        // Android or older iOS — just enable
+        enableGyro();
+      }
     };
 
     const handleResize = () => { init(); };
 
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('resize', handleResize);
+
+    // Enable gyroscope on mobile
+    if (isMobile && !reducedMotion) {
+      // Try to request on first user interaction (required on iOS)
+      const onFirstTouch = () => {
+        requestGyroPermission();
+        window.removeEventListener('touchstart', onFirstTouch);
+      };
+      window.addEventListener('touchstart', onFirstTouch, { once: true });
+    }
 
     init();
     draw();
@@ -127,6 +184,7 @@ export const Starfield: React.FC = () => {
       cancelAnimationFrame(animId);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('deviceorientation', handleOrientation);
     };
   }, []);
 

@@ -67,29 +67,34 @@ const experiences = [
 
 export const Experience: React.FC = () => {
   return (
-    <main className="h-screen overflow-y-scroll snap-y snap-mandatory relative z-10">
-      {/* Fixed timeline axis — spans full viewport, persists across snaps */}
+    <main className="h-screen overflow-y-scroll md:snap-y md:snap-mandatory relative z-10">
+      {/* Fixed timeline axis — desktop only */}
       <div className="fixed left-1/2 top-0 bottom-0 -translate-x-1/2 w-[1px] bg-gradient-to-b from-transparent via-outline/30 to-transparent pointer-events-none hidden md:block z-10" />
 
       {experiences.map((exp, index) => (
-        <div key={exp.company} className="snap-start h-screen flex items-center relative">
+        <div key={exp.company} className="min-h-screen md:h-screen md:snap-start flex items-center relative py-20 md:py-0">
           <div className="max-w-6xl mx-auto px-6 w-full">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className={`flex flex-col md:flex-row items-center justify-center w-full group ${
+              className={`flex flex-col md:flex-row items-start md:items-center justify-center w-full group ${
                 index % 2 === 0 ? 'md:justify-start' : 'md:justify-end'
               }`}
             >
               <div className={`w-full md:w-1/2 flex flex-col ${
                 index % 2 === 0
-                  ? 'md:pr-24 md:items-end text-center md:text-right'
-                  : 'md:pl-24 md:items-start text-center md:text-left order-1 md:order-2'
+                  ? 'md:pr-24 items-start md:items-end text-left md:text-right'
+                  : 'md:pl-24 items-start md:items-start text-left md:text-left order-1 md:order-2'
               }`}>
+                {/* Mobile section index */}
+                <span className="md:hidden text-[10px] font-headline tracking-widest text-white/20 mb-4">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+
                 {exp.current && (
-                  <div className={`flex items-center gap-2 mb-4 ${index % 2 === 0 ? 'justify-end' : 'justify-start'}`}>
+                  <div className="flex items-center gap-2 mb-4 justify-start md:justify-end">
                     <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
@@ -99,7 +104,7 @@ export const Experience: React.FC = () => {
                 )}
 
                 {exp.logo && (
-                  <div className={`mb-8 w-[72px] h-[72px] rounded-xl overflow-hidden border transition-colors duration-300 ${
+                  <div className={`mb-4 md:mb-8 w-14 h-14 md:w-[72px] md:h-[72px] rounded-xl overflow-hidden border transition-colors duration-300 ${
                     exp.fillLogo ? '' : 'bg-white flex items-center justify-center'
                   } ${
                     exp.current
@@ -115,13 +120,13 @@ export const Experience: React.FC = () => {
                   </div>
                 )}
 
-                <h2 className={`font-headline text-[3.5rem] font-bold tracking-[-0.04em] leading-none mb-1 ${exp.current ? 'text-white' : 'text-white/80'}`}>
+                <h2 className={`font-headline text-3xl sm:text-[3.5rem] font-bold tracking-[-0.04em] leading-none mb-1 ${exp.current ? 'text-white' : 'text-white/80'}`}>
                   {exp.company}
                 </h2>
-                <p className={`font-headline text-lg font-normal tracking-tight mb-3 ${exp.current ? 'text-white/60' : 'text-white/40'}`}>
+                <p className={`font-headline text-base sm:text-lg font-normal tracking-tight mb-3 ${exp.current ? 'text-white/60' : 'text-white/40'}`}>
                   {exp.role}
                 </p>
-                <p className="text-secondary font-body italic text-lg max-w-md leading-relaxed">
+                <p className="text-secondary font-body italic text-base sm:text-lg max-w-md leading-relaxed">
                   {exp.description}
                 </p>
                 <div className="mt-5 flex flex-wrap items-center gap-3">
@@ -135,7 +140,7 @@ export const Experience: React.FC = () => {
                 </div>
               </div>
 
-              {/* Timeline dot — centered in its snap section */}
+              {/* Timeline dot — desktop only */}
               <div className={`hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 rounded-full border-4 border-background transition-transform group-hover:scale-125 ${
                 exp.current
                   ? 'w-5 h-5 bg-white ring-2 ring-white/30'
