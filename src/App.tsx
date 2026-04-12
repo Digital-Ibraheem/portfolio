@@ -89,17 +89,6 @@ export default function App() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Footer */}
-      <footer className="relative z-10 bg-surface-container-lowest/90 backdrop-blur-sm flex flex-col md:flex-row justify-between items-center w-full px-12 py-12 border-t border-white/5">
-        <div className="font-body font-light italic tracking-wider text-xs text-secondary mb-4 md:mb-0">
-          © mmxxvi ibraheem dawod. all rights reserved.
-        </div>
-        <div className="flex gap-8">
-          <a href="#" className="text-secondary font-body font-light italic tracking-wider text-xs hover:text-white transition-colors duration-300">privacy</a>
-          <a href="#" className="text-secondary font-body font-light italic tracking-wider text-xs hover:text-white transition-colors duration-300">terms</a>
-          <a href="#" className="text-secondary font-body font-light italic tracking-wider text-xs hover:text-white transition-colors duration-300">coordinates</a>
-        </div>
-      </footer>
     </div>
   );
 }
