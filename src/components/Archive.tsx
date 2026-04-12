@@ -42,20 +42,20 @@ const projects = [
     demo: 'https://pypi.org/project/agent-budget-guard/'
   },
   {
-    id: 'movie_recommender',
-    title: 'movie_recommender',
-    description: 'collaborative filtering recommendation engine built with flask and scikit-learn.',
-    image: movieImg,
-    source: 'https://github.com/Digital-Ibraheem/movie-recommender-backend',
-    demo: 'https://creative-madeleine-a22059.netlify.app/'
-  },
-  {
     id: '7_degrees',
     title: '7_degrees',
     description: 'real-time transcription pipeline using openai whisper + gemini. next.js dashboard with insights loading under 2s. shipped in 36 hours.',
     image: sevenDegreesImg,
     source: 'https://github.com/adamstol/HTN-2025',
     demo: 'https://7-degrees.vercel.app/'
+  },
+  {
+    id: 'movie_recommender',
+    title: 'movie_recommender',
+    description: 'collaborative filtering recommendation engine built with flask and scikit-learn.',
+    image: movieImg,
+    source: 'https://github.com/Digital-Ibraheem/movie-recommender-backend',
+    demo: 'https://creative-madeleine-a22059.netlify.app/'
   },
   {
     id: 'chess_evaluation',
