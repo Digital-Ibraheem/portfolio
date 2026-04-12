@@ -152,7 +152,7 @@ export const Archive: React.FC = () => {
                 rel="noopener noreferrer"
                 className="px-8 py-2 bg-transparent text-white border border-white/30 font-headline font-bold text-sm lowercase tracking-tight rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300"
               >
-                view_all_on_github
+                view_on_github
               </a>
             </div>
           )}
