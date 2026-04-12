@@ -157,7 +157,6 @@ export const Archive: React.FC = () => {
             </div>
           )}
         </section>
-        // test
       ))}
     </main>
   );

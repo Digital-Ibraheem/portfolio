@@ -57,10 +57,10 @@ export const Starfield: React.FC = () => {
           size: 0.4 + Math.random() * 1.4,
           baseOpacity: 0.3 + Math.random() * 0.7,
           driftAngle: Math.random() * Math.PI * 2,
-          driftSpeed: 0.0004 + Math.random() * 0.0007,
-          driftRadius: 1.5 + Math.random() * 2.5,
+          driftSpeed: 0.002 + Math.random() * 0.003,
+          driftRadius: 8 + Math.random() * 12,
           twinklePhase: Math.random() * Math.PI * 2,
-          twinkleSpeed: 0.003 + Math.random() * 0.007,
+          twinkleSpeed: 0.018 + Math.random() * 0.025,
         };
       });
     };
@@ -98,7 +98,7 @@ export const Starfield: React.FC = () => {
         const renderSize = star.size * (1 + excitement * 2.5);
 
         // Opacity: ambient base + boost near cursor, twinkle always
-        const twinkle = 0.82 + 0.18 * Math.sin(star.twinklePhase);
+        const twinkle = 0.4 + 0.6 * Math.sin(star.twinklePhase);
         const opacity = (0.30 + excitement * 0.65) * star.baseOpacity * twinkle;
 
         ctx.beginPath();
