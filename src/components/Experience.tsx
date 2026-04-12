@@ -68,8 +68,11 @@ const experiences = [
 export const Experience: React.FC = () => {
   return (
     <main className="h-screen overflow-y-scroll snap-y snap-mandatory relative z-10">
+      {/* Fixed timeline axis — spans full viewport, persists across snaps */}
+      <div className="fixed left-1/2 top-0 bottom-0 -translate-x-1/2 w-[1px] bg-gradient-to-b from-transparent via-outline/30 to-transparent pointer-events-none hidden md:block z-10" />
+
       {experiences.map((exp, index) => (
-        <div key={exp.company} className="snap-start h-screen flex items-center">
+        <div key={exp.company} className="snap-start h-screen flex items-center relative">
           <div className="max-w-6xl mx-auto px-6 w-full">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -126,6 +129,13 @@ export const Experience: React.FC = () => {
                   {exp.location}
                 </div>
               </div>
+
+              {/* Timeline dot — centered in its snap section */}
+              <div className={`hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 rounded-full border-4 border-background transition-transform group-hover:scale-125 ${
+                exp.current
+                  ? 'w-5 h-5 bg-white ring-2 ring-white/30'
+                  : 'w-4 h-4 bg-white'
+              }`} />
 
               <div className={`w-full md:w-1/2 hidden md:block ${index % 2 === 0 ? '' : 'order-1'}`} />
             </motion.div>
