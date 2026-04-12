@@ -2,6 +2,7 @@
 
 Personal portfolio built with React, TypeScript, and Tailwind CSS.
 
+
 ## design
 
 The aesthetic is inspired by deep space observation — a dark, minimal canvas where content surfaces through light rather than structure. No heavy borders, no card grids. Just text, motion, and a starfield that reacts to your cursor.
