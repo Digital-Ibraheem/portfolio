@@ -18,7 +18,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
           ibraheem dawod.
         </h1>
         <p className="font-body italic font-extralight text-secondary text-base md:text-lg tracking-[0.02em] max-w-md">
-          incoming swe @ tesla · prev: kinaxis, solink, delty (yc x25) · cs @ carleton
+          incoming swe @ tesla. computer science student at carleton university. building things and learning along the way.
         </p>
         
         <div className="flex flex-wrap justify-center gap-6 mt-12 pointer-events-auto">
