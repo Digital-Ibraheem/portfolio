@@ -36,7 +36,7 @@ export default function App() {
           to="/"
           className="text-xl font-bold tracking-tighter text-white lowercase font-headline"
         >
-          ibraheem dawod
+          ibraheem_dawod.
         </Link>
 
         <div className="flex items-center gap-12">

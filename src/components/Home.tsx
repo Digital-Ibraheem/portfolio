@@ -15,7 +15,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         className="z-10 text-center flex flex-col items-center pointer-events-none"
       >
         <h1 className="font-headline text-7xl md:text-[6rem] lg:text-[8rem] font-bold text-white leading-none tracking-[-0.04em] mb-4">
-          ibraheem dawod.
+          ibraheem<wbr />_dawod.
         </h1>
         <p className="font-body italic font-extralight text-secondary text-base md:text-lg tracking-[0.02em] max-w-md">
           incoming swe @ tesla. computer science student @ carleton university. building things and learning along the way.
@@ -26,13 +26,13 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             onClick={() => onNavigate('archive')}
             className="px-8 py-2 bg-transparent text-white border border-white/30 font-headline font-bold text-sm lowercase tracking-tight rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300 cursor-pointer"
           >
-            view archive
+            view_archive
           </button>
           <button 
             onClick={() => onNavigate('experience')}
             className="px-8 py-2 bg-transparent text-white border border-white/30 font-headline font-bold text-sm lowercase tracking-tight rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300 cursor-pointer"
           >
-            experience log
+            experience_log
           </button>
         </div>
       </motion.div>

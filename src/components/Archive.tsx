@@ -1,5 +1,18 @@
 import React from 'react';
 import { motion } from 'motion/react';
+
+// Renders title with a line break before each underscore: agent_budget_guard →
+// agent
+// _budget
+// _guard
+const renderTitle = (title: string) => {
+  const parts = title.split('_');
+  return parts.map((part, i) => (
+    <React.Fragment key={i}>
+      {i > 0 && <><wbr /><span>_</span></>}{part}
+    </React.Fragment>
+  ));
+};
 import tafsirImg from '../assets/projects/tafsirsearch.png';
 import agentImg from '../assets/projects/agentbudgetguard.png';
 import modcentralImg from '../assets/projects/modcentral.png';
@@ -9,7 +22,7 @@ import movieImg from '../assets/projects/movierecommender.png';
 const projects = [
   {
     id: 'tafsir_search',
-    title: 'tafsir search',
+    title: 'tafsir_search',
     description: 'bilingual quran rag engine with a two-stage llm pipeline. 80% fewer hallucinated citations.',
     image: tafsirImg,
     source: 'https://github.com/Digital-Ibraheem/tafsir-search',
@@ -17,7 +30,7 @@ const projects = [
   },
   {
     id: 'modcentral',
-    title: 'mod central',
+    title: 'modcentral',
     description: 'multi-vendor car parts marketplace. elasticsearch search, role-based access, ci/cd — supporting 10k+ listings.',
     image: modcentralImg,
     source: null,
@@ -25,7 +38,7 @@ const projects = [
   },
   {
     id: 'agent_budget_guard',
-    title: 'agent budget guard',
+    title: 'agent_budget_guard',
     description: 'open-source sdk for hard dollar caps on llm agents. supports openai, anthropic, and gemini. 300+ downloads in the first week.',
     image: agentImg,
     source: 'https://github.com/Digital-Ibraheem/agent-budget-guard',
@@ -33,7 +46,7 @@ const projects = [
   },
   {
     id: 'movie_recommender',
-    title: 'movie recommender',
+    title: 'movie_recommender',
     description: 'collaborative filtering recommendation engine built with flask and scikit-learn.',
     image: movieImg,
     source: 'https://github.com/Digital-Ibraheem/movie-recommender-backend',
@@ -41,7 +54,7 @@ const projects = [
   },
   {
     id: '7_degrees',
-    title: '7 degrees',
+    title: '7_degrees',
     description: 'real-time transcription pipeline using openai whisper + gemini. next.js dashboard with insights loading under 2s. shipped in 36 hours.',
     image: sevenDegreesImg,
     source: 'https://github.com/adamstol/HTN-2025',
@@ -49,7 +62,7 @@ const projects = [
   },
   {
     id: 'chess_evaluation',
-    title: 'chess evaluation',
+    title: 'chess_evaluation',
     description: 'python chess position evaluator using custom heuristics and material analysis.',
     image: 'https://opengraph.githubassets.com/1/Digital-Ibraheem/chess-evaluation',
     source: 'https://github.com/Digital-Ibraheem/chess-evaluation',
@@ -61,7 +74,7 @@ export const Archive: React.FC = () => {
   return (
     <main className="h-screen overflow-y-scroll snap-y snap-mandatory">
       {projects.map((project, index) => (
-        <section key={project.id} className="snap-start snap-always h-screen flex items-center px-12 relative overflow-hidden border-b border-outline/10 last:border-b-0">
+        <section key={project.id} className={`snap-start h-screen flex items-center px-12 relative overflow-hidden border-b border-outline/10 last:border-b-0 ${index === projects.length - 1 ? 'pb-20' : ''}`}>
           <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
             <div className={`md:col-span-5 ${index % 2 !== 0 ? 'md:order-2 text-right' : ''}`}>
               <motion.h2
@@ -70,7 +83,7 @@ export const Archive: React.FC = () => {
                 viewport={{ once: true }}
                 className="font-headline text-[3.5rem] font-bold tracking-[-0.04em] leading-tight mb-4"
               >
-                {project.title}
+                {renderTitle(project.title)}
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0 }}
@@ -81,17 +94,6 @@ export const Archive: React.FC = () => {
               >
                 {project.description}
               </motion.p>
-              {index === projects.length - 1 && (
-                <a
-                  href="https://github.com/Digital-Ibraheem"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`mt-10 text-[10px] font-headline font-bold lowercase tracking-widest text-secondary hover:text-white transition-colors duration-300 ${index % 2 !== 0 ? 'text-right' : ''}`}
-                >
-                  view all on github →
-                </a>
-              )}
-
               <div className={`flex gap-4 mt-8 ${index % 2 !== 0 ? 'justify-end' : ''}`}>
                 {project.source && (
                   <a
@@ -100,7 +102,7 @@ export const Archive: React.FC = () => {
                     rel="noopener noreferrer"
                     className="px-8 py-3 rounded-full border border-outline/30 text-[10px] font-headline font-bold lowercase tracking-widest hover:bg-white hover:text-background transition-all duration-300"
                   >
-                    view source
+                    view_source
                   </a>
                 )}
                 {project.demo && (
@@ -110,7 +112,7 @@ export const Archive: React.FC = () => {
                     rel="noopener noreferrer"
                     className="px-8 py-3 rounded-full border border-outline/30 text-[10px] font-headline font-bold lowercase tracking-widest hover:bg-white hover:text-background transition-all duration-300"
                   >
-                    live demo
+                    live_demo
                   </a>
                 )}
               </div>
@@ -140,6 +142,20 @@ export const Archive: React.FC = () => {
               </motion.div>
             </div>
           </div>
+
+          {index === projects.length - 1 && (
+            <div className="absolute bottom-10 left-0 right-0 flex flex-col items-center gap-4">
+              <p className="font-body italic text-secondary text-sm tracking-wide">wanna see more?</p>
+              <a
+                href="https://github.com/Digital-Ibraheem"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-2 bg-transparent text-white border border-white/30 font-headline font-bold text-sm lowercase tracking-tight rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300"
+              >
+                view_all_on_github
+              </a>
+            </div>
+          )}
         </section>
       ))}
     </main>

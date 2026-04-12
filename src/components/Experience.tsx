@@ -72,7 +72,7 @@ export const Experience: React.FC = () => {
       <div className="fixed left-1/2 top-0 bottom-0 -translate-x-1/2 w-[1px] bg-gradient-to-b from-transparent via-outline/30 to-transparent pointer-events-none hidden md:block z-10" />
 
       {experiences.map((exp, index) => (
-        <div key={exp.company} className="snap-start snap-always h-screen flex items-center relative">
+        <div key={exp.company} className="snap-start h-screen flex items-center relative">
           <div className="max-w-6xl mx-auto px-6 w-full">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -124,12 +124,14 @@ export const Experience: React.FC = () => {
                 <p className="text-secondary font-body italic text-lg max-w-md leading-relaxed">
                   {exp.description}
                 </p>
-                <div className={`mt-4 text-[10px] font-headline tracking-widest ${exp.current ? 'text-white/50' : 'text-white/30'}`}>
-                  {exp.period}
-                </div>
-                <div className="mt-3 inline-flex items-center gap-2 px-3 py-1 bg-surface-container-low border border-outline/15 text-[10px] font-label tracking-widest text-secondary">
-                  <MapPin size={12} />
-                  {exp.location}
+                <div className="mt-5 flex flex-wrap items-center gap-3">
+                  <span className="text-sm font-headline tracking-widest text-white/70">
+                    {exp.period}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-surface-container-low border border-outline/20 text-sm font-headline tracking-widest text-white/70">
+                    <MapPin size={13} />
+                    {exp.location}
+                  </span>
                 </div>
               </div>
 
