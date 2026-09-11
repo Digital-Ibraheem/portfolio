@@ -1,6 +1,7 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useRef } from 'react';
+import { motion, useScroll } from 'motion/react';
 import { MapPin } from 'lucide-react';
+import shopifyLogo from '../assets/logos/shopify.svg';
 import teslaLogo from '../assets/logos/tesla.png';
 import kinaxisLogo from '../assets/logos/kinaxis.svg';
 import solinkLogo from '../assets/logos/solink.png';
@@ -9,12 +10,23 @@ import etherLogo from '../assets/logos/ether.svg';
 
 const experiences = [
   {
+    company: 'shopify',
+    role: 'software engineer intern',
+    description: 'joined the optimizations team, working on performance and merchant-facing tooling.',
+    location: 'ottawa, on',
+    period: 'sep. 2026 – present',
+    current: true,
+    logo: shopifyLogo,
+    fillLogo: false,
+    logoClass: 'w-9 h-9'
+  },
+  {
     company: 'tesla',
     role: 'software engineer intern',
-    description: 'joining the team to build automation tools with fastapi and docker for residential energy systems.',
+    description: 'built automation tools with fastapi and docker for residential energy systems.',
     location: 'palo alto, ca',
     period: 'may – aug. 2026',
-    current: true,
+    current: false,
     logo: teslaLogo,
     fillLogo: true,
     logoClass: 'w-16 h-16'
@@ -66,10 +78,18 @@ const experiences = [
 ];
 
 export const Experience: React.FC = () => {
+  const scrollRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ container: scrollRef });
+
   return (
-    <main className="h-screen overflow-y-scroll md:snap-y md:snap-mandatory relative z-10">
+    <main ref={scrollRef} className="h-screen overflow-y-scroll md:snap-y md:snap-mandatory relative z-10">
       {/* Fixed timeline axis — desktop only */}
-      <div className="fixed left-1/2 top-0 bottom-0 -translate-x-1/2 w-[1px] bg-gradient-to-b from-transparent via-outline/30 to-transparent pointer-events-none hidden md:block z-10" />
+      <div className="fixed left-1/2 top-24 bottom-24 -translate-x-1/2 w-[1px] bg-outline/15 pointer-events-none hidden md:block z-10">
+        <motion.div
+          className="absolute inset-x-0 top-0 bottom-0 bg-gradient-to-b from-white/70 to-white/20 origin-top"
+          style={{ scaleY: scrollYProgress }}
+        />
+      </div>
 
       {experiences.map((exp, index) => (
         <div key={exp.company} className="min-h-screen md:h-screen md:snap-start flex items-center relative py-20 md:py-0">
@@ -99,7 +119,7 @@ export const Experience: React.FC = () => {
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
                     </span>
-                    <span className="text-[10px] font-headline font-bold tracking-widest text-white/70 uppercase">incoming</span>
+                    <span className="text-[10px] font-headline font-bold tracking-widest text-white/70 uppercase">current</span>
                   </div>
                 )}
 
