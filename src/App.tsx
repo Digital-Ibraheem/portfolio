@@ -3,6 +3,7 @@ import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react';
 import { Github, Linkedin, Menu, X } from 'lucide-react';
 import { Starfield } from './components/Starfield';
+import { DataCursor } from './components/DataCursor';
 import { Home } from './components/Home';
 import { Experience } from './components/Experience';
 import { Archive } from './components/Archive';
@@ -28,6 +29,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-background text-primary selection:bg-white selection:text-background">
       <Starfield />
+      <DataCursor />
 
       {/* Navigation */}
       <nav className={cn(
@@ -46,20 +48,22 @@ export default function App() {
             <Link
               to="/archive"
               className={cn(
-                "font-headline font-bold lowercase tracking-tighter transition-colors duration-200",
-                location.pathname === '/archive' ? "text-white border-b border-white" : "text-secondary hover:text-white"
+                "font-label text-sm tracking-tight transition-colors duration-200 flex items-center gap-1.5",
+                location.pathname === '/archive' ? "text-white" : "text-secondary hover:text-white"
               )}
             >
-              archive
+              <span className={cn("w-1 h-1 rounded-full bg-white transition-opacity", location.pathname === '/archive' ? "opacity-100" : "opacity-0")} />
+              ./archive
             </Link>
             <Link
               to="/experience"
               className={cn(
-                "font-headline font-bold lowercase tracking-tighter transition-colors duration-200",
-                location.pathname === '/experience' ? "text-white border-b border-white" : "text-secondary hover:text-white"
+                "font-label text-sm tracking-tight transition-colors duration-200 flex items-center gap-1.5",
+                location.pathname === '/experience' ? "text-white" : "text-secondary hover:text-white"
               )}
             >
-              experience
+              <span className={cn("w-1 h-1 rounded-full bg-white transition-opacity", location.pathname === '/experience' ? "opacity-100" : "opacity-0")} />
+              ./experience
             </Link>
           </div>
 
@@ -104,20 +108,20 @@ export default function App() {
               <Link
                 to="/archive"
                 className={cn(
-                  "font-headline font-bold lowercase tracking-tighter text-sm py-2 px-4 transition-colors duration-200",
+                  "font-label text-sm py-2 px-4 transition-colors duration-200",
                   location.pathname === '/archive' ? "text-white" : "text-secondary"
                 )}
               >
-                archive
+                ./archive
               </Link>
               <Link
                 to="/experience"
                 className={cn(
-                  "font-headline font-bold lowercase tracking-tighter text-sm py-2 px-4 transition-colors duration-200",
+                  "font-label text-sm py-2 px-4 transition-colors duration-200",
                   location.pathname === '/experience' ? "text-white" : "text-secondary"
                 )}
               >
-                experience
+                ./experience
               </Link>
               <div className="flex items-center gap-4 ml-2">
                 <a href="https://github.com/Digital-Ibraheem" target="_blank" rel="noopener noreferrer" className="text-secondary hover:text-white transition-colors duration-200">

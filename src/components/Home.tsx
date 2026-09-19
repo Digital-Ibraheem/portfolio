@@ -15,22 +15,22 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         className="z-10 text-center flex flex-col items-center pointer-events-none px-10 md:px-0"
       >
         <h1 className="font-headline text-5xl sm:text-7xl md:text-[6rem] lg:text-[8rem] font-bold text-white leading-none tracking-[-0.04em] mb-4">
-          ibraheem<wbr />_dawod.
+          ibraheem<wbr />_dawod.<span className="cursor-blink font-label">_</span>
         </h1>
         <p className="font-body italic font-extralight text-secondary text-base md:text-lg tracking-[0.02em] max-w-xs md:max-w-md">
-          incoming swe @ tesla. computer science student @ carleton university. building things and learning along the way.
+          swe @ shopify. computer science student @ carleton university. building things and learning along the way.
         </p>
         
         <div className="flex flex-wrap justify-center gap-6 mt-8 sm:mt-12 pointer-events-auto">
           <button
             onClick={() => onNavigate('archive')}
-            className="px-6 py-3 sm:px-8 sm:py-2 bg-transparent text-white border border-white/30 font-headline font-bold text-sm lowercase tracking-tight rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300 cursor-pointer"
+            className="px-6 py-3 sm:px-8 sm:py-2 bg-transparent text-white border border-white/30 font-label text-sm tracking-tight rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300 cursor-pointer"
           >
             view_archive
           </button>
           <button
             onClick={() => onNavigate('experience')}
-            className="px-6 py-3 sm:px-8 sm:py-2 bg-transparent text-white border border-white/30 font-headline font-bold text-sm lowercase tracking-tight rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300 cursor-pointer"
+            className="px-6 py-3 sm:px-8 sm:py-2 bg-transparent text-white border border-white/30 font-label text-sm tracking-tight rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300 cursor-pointer"
           >
             experience_log
           </button>

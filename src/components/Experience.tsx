@@ -109,8 +109,8 @@ export const Experience: React.FC = () => {
                   : 'md:pl-24 items-start md:items-start text-left md:text-left order-1 md:order-2'
               }`}>
                 {/* Mobile section index */}
-                <span className="md:hidden text-[10px] font-headline tracking-widest text-white/20 mb-4">
-                  {String(index + 1).padStart(2, '0')}
+                <span className="md:hidden text-[10px] font-label text-white/20 mb-4">
+                  [{String(index + 1).padStart(2, '0')}]
                 </span>
 
                 {exp.current && (
@@ -119,7 +119,7 @@ export const Experience: React.FC = () => {
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
                     </span>
-                    <span className="text-[10px] font-headline font-bold tracking-widest text-white/70 uppercase">current</span>
+                    <span className="text-[10px] font-label tracking-widest text-white/70">current</span>
                   </div>
                 )}
 
@@ -149,23 +149,23 @@ export const Experience: React.FC = () => {
                 <p className="text-secondary font-body italic text-base sm:text-lg max-w-md leading-relaxed">
                   {exp.description}
                 </p>
-                <div className="mt-5 flex flex-wrap items-center gap-3">
-                  <span className="text-sm font-headline tracking-widest text-white/70">
-                    {exp.period}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-surface-container-low border border-outline/20 text-sm font-headline tracking-widest text-white/70">
-                    <MapPin size={13} />
+                <div className="mt-5 flex flex-wrap items-center gap-2 text-sm font-label text-white/50">
+                  <span>{exp.period}</span>
+                  <span className="text-white/20">·</span>
+                  <span className="flex items-center gap-1.5">
+                    <MapPin size={12} className="text-white/30" />
                     {exp.location}
                   </span>
                 </div>
               </div>
 
-              {/* Timeline dot — desktop only */}
-              <div className={`hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 rounded-full border-4 border-background transition-transform group-hover:scale-125 ${
-                exp.current
-                  ? 'w-5 h-5 bg-white ring-2 ring-white/30'
-                  : 'w-4 h-4 bg-white'
-              }`} />
+              {/* Timeline dot — desktop only, styled like a star */}
+              <div
+                className={`hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 rounded-full border-4 border-background transition-transform group-hover:scale-125 ${
+                  exp.current ? 'w-5 h-5 bg-white' : 'w-4 h-4 bg-white'
+                }`}
+                style={{ boxShadow: exp.current ? '0 0 16px 4px rgba(255,255,255,0.5)' : '0 0 6px 1px rgba(255,255,255,0.15)' }}
+              />
 
               <div className={`w-full md:w-1/2 hidden md:block ${index % 2 === 0 ? '' : 'order-1'}`} />
             </motion.div>

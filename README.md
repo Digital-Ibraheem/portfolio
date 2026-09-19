@@ -14,7 +14,7 @@ Typography pairs **Space Grotesk** (headlines, labels) with **Newsreader** (body
 ## what it shows
 
 - **Archive** — selected projects spanning AI/ML tooling, full-stack apps, and open-source work
-- **Experience** — timeline of internships and roles, from founding a dev agency to incoming at Tesla
+- **Experience** — timeline of internships and roles, from founding a dev agency to a current internship at Shopify
 
 ## stack
 

@@ -100,7 +100,7 @@ export const Archive: React.FC = () => {
                     href={project.source}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-6 sm:px-8 py-3 rounded-full border border-outline/30 text-xs sm:text-[10px] font-headline font-bold lowercase tracking-widest hover:bg-white hover:text-background transition-all duration-300"
+                    className="px-6 sm:px-8 py-3 rounded-full border border-outline/30 text-xs sm:text-[10px] font-label tracking-widest hover:bg-white hover:text-background transition-all duration-300"
                   >
                     view_source
                   </a>
@@ -110,7 +110,7 @@ export const Archive: React.FC = () => {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-6 sm:px-8 py-3 rounded-full border border-outline/30 text-xs sm:text-[10px] font-headline font-bold lowercase tracking-widest hover:bg-white hover:text-background transition-all duration-300"
+                    className="px-6 sm:px-8 py-3 rounded-full border border-outline/30 text-xs sm:text-[10px] font-label tracking-widest hover:bg-white hover:text-background transition-all duration-300"
                   >
                     live_demo
                   </a>
@@ -150,9 +150,9 @@ export const Archive: React.FC = () => {
                 href="https://github.com/Digital-Ibraheem"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-2 bg-transparent text-white border border-white/30 font-headline font-bold text-sm lowercase tracking-tight rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300"
+                className="px-8 py-2 bg-transparent text-white border border-white/30 font-label text-sm tracking-tight rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300"
               >
-                view_on_github
+                ./github
               </a>
             </div>
           )}
