@@ -3,7 +3,6 @@ import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react';
 import { Github, Linkedin, Menu, X } from 'lucide-react';
 import { Starfield } from './components/Starfield';
-import { DataCursor } from './components/DataCursor';
 import { Home } from './components/Home';
 import { Experience } from './components/Experience';
 import { Archive } from './components/Archive';
@@ -29,7 +28,6 @@ export default function App() {
   return (
     <div className="min-h-screen bg-background text-primary selection:bg-white selection:text-background">
       <Starfield />
-      <DataCursor />
 
       {/* Navigation */}
       <nav className={cn(

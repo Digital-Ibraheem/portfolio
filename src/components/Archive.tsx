@@ -18,20 +18,20 @@ import movieImg from '../assets/projects/movierecommender.png';
 
 const projects = [
   {
-    id: 'tafsir_search',
-    title: 'tafsir_search',
-    description: 'bilingual quran rag engine with a two-stage llm pipeline. 80% fewer hallucinated citations.',
-    image: tafsirImg,
-    source: 'https://github.com/Digital-Ibraheem/tafsir-search',
-    demo: null
-  },
-  {
     id: 'modcentral',
     title: 'modcentral',
     description: 'multi-vendor car parts marketplace. elasticsearch search, role-based access, ci/cd — supporting 10k+ listings.',
     image: modcentralImg,
     source: null,
     demo: 'https://modcentral.co'
+  },
+  {
+    id: 'tafsir_search',
+    title: 'tafsir_search',
+    description: 'bilingual quran rag engine with a two-stage llm pipeline. 80% fewer hallucinated citations.',
+    image: tafsirImg,
+    source: 'https://github.com/Digital-Ibraheem/tafsir-search',
+    demo: null
   },
   {
     id: 'agent_budget_guard',

@@ -18,7 +18,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
           ibraheem<wbr />_dawod.<span className="cursor-blink font-label">_</span>
         </h1>
         <p className="font-body italic font-extralight text-secondary text-base md:text-lg tracking-[0.02em] max-w-xs md:max-w-md">
-          swe @ shopify. computer science student @ carleton university. building things and learning along the way.
+          previously @ tesla, delty (yc x25), kinaxis, solink & ether technologies. computer science student @ carleton university. building things and learning along the way.
         </p>
         
         <div className="flex flex-wrap justify-center gap-6 mt-8 sm:mt-12 pointer-events-auto">
