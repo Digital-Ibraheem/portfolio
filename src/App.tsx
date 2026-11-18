@@ -7,6 +7,7 @@ import { Home } from './components/Home';
 import { Experience } from './components/Experience';
 import { Archive } from './components/Archive';
 import { cn } from './lib/utils';
+import { trackPageView } from './lib/analytics';
 
 export default function App() {
   const location = useLocation();
@@ -23,6 +24,7 @@ export default function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
     setMenuOpen(false);
+    trackPageView(location.pathname);
   }, [location.pathname]);
 
   return (
