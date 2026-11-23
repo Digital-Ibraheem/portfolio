@@ -146,7 +146,7 @@ export default function App() {
           transition={{ duration: 0.5 }}
         >
           <Routes location={location}>
-            <Route path="/" element={<Home onNavigate={(view) => navigate(`/${view === 'home' ? '' : view}`)} />} />
+            <Route path="/" element={<Home onNavigate={(view) => navigate(`/${view}`)} />} />
             <Route path="/archive" element={<Archive />} />
             <Route path="/experience" element={<Experience />} />
           </Routes>

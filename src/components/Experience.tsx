@@ -134,7 +134,7 @@ export const Experience: React.FC = () => {
                     <img
                       src={exp.logo}
                       alt={exp.company}
-                      className={exp.fillLogo ? `object-cover ${exp.fillPad ? 'w-4/5 h-4/5' : 'w-full h-full'}` : `${exp.logoClass} object-contain`}
+                      className={exp.fillLogo ? 'object-cover w-full h-full' : `${exp.logoClass} object-contain`}
                       referrerPolicy="no-referrer"
                     />
                   </div>
