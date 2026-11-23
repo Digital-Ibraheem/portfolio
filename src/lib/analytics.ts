@@ -10,6 +10,37 @@ declare global {
 
 const GA_ID = import.meta.env.VITE_GA_ID as string | undefined;
 const ORG_CACHE_KEY = 'visitor_org_v1';
+const SOURCE_CACHE_KEY = 'visitor_source_v1';
+
+// Google's internal intern-matching tool. Recruiters/hosts clicking through from
+// a candidate profile arrive with this referrer (origin-only under default policy).
+const INTERNMATCH_RE = /(^|\.)internmatch\.googleplex\.com$/i;
+const GOOGLEPLEX_RE = /(^|\.)googleplex\.com$/i;
+
+type Source = { referrer: string; host: string; internmatch: boolean; googleplex: boolean };
+
+// document.referrer only reflects the original landing, but we cache it per
+// session anyway so a reload mid-session doesn't lose the attribution.
+function getSource(): Source {
+  try {
+    const cached = sessionStorage.getItem(SOURCE_CACHE_KEY);
+    if (cached) return JSON.parse(cached);
+  } catch {}
+  let host = '';
+  try { host = document.referrer ? new URL(document.referrer).hostname : ''; } catch {}
+  // Fallback for when googleplex strips the referrer: link to the site from the
+  // internmatch profile as ?ref=internmatch (or utm_source=internmatch).
+  const params = new URLSearchParams(location.search);
+  const tagged = [params.get('ref'), params.get('utm_source')].some((v) => v?.toLowerCase() === 'internmatch');
+  const src: Source = {
+    referrer: document.referrer || '(direct)',
+    host,
+    internmatch: INTERNMATCH_RE.test(host) || tagged,
+    googleplex: GOOGLEPLEX_RE.test(host),
+  };
+  try { sessionStorage.setItem(SOURCE_CACHE_KEY, JSON.stringify(src)); } catch {}
+  return src;
+}
 
 const isBot = () =>
   navigator.webdriver || /bot|crawl|spider|slurp|headless|lighthouse|preview/i.test(navigator.userAgent);
@@ -80,9 +111,22 @@ export function initAnalytics() {
   // SPA: page views are sent manually on route change.
   window.gtag('config', GA_ID, { send_page_view: false });
 
+  const source = getSource();
+  window.gtag('set', 'user_properties', {
+    from_internmatch: source.internmatch ? 'yes' : 'no',
+  });
+  if (source.internmatch) {
+    // Dedicated event so it can be marked as a key event / alerted on in GA4.
+    window.gtag('event', 'internmatch_visit', {
+      referrer: source.referrer,
+      landing_page: location.pathname,
+    });
+  }
+
   lookupOrg().then((info) => {
     if (!info) return;
-    const isGoogle = /google/i.test(info.org) || info.asn === 'AS15169';
+    const source = getSource();
+    const isGoogle = /google/i.test(info.org) || info.asn === 'AS15169' || source.googleplex || source.internmatch;
     window.gtag('set', 'user_properties', {
       visitor_org: info.org.slice(0, 36),
       visitor_asn: info.asn,
@@ -96,7 +140,8 @@ export function initAnalytics() {
       visitor_country: info.country,
       is_google: isGoogle ? 'yes' : 'no',
       landing_page: location.pathname,
-      referrer: document.referrer || '(direct)',
+      referrer: source.referrer,
+      from_internmatch: source.internmatch ? 'yes' : 'no',
     });
   });
 }
@@ -107,5 +152,6 @@ export function trackPageView(path: string) {
     page_path: path,
     page_location: location.href,
     page_title: document.title,
+    from_internmatch: getSource().internmatch ? 'yes' : 'no',
   });
 }
